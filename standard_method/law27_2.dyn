@@ -1,0 +1,1085 @@
+{
+  "Uuid": "e5ba4973-3abd-404a-8274-71bec4200d64",
+  "IsCustomNode": false,
+  "Description": null,
+  "Name": "law27_2",
+  "ElementResolver": {
+    "ResolutionMap": {}
+  },
+  "Inputs": [],
+  "Outputs": [],
+  "Nodes": [
+    {
+      "ConcreteType": "CoreNodeModels.Watch, CoreNodeModels",
+      "NodeType": "ExtensionNode",
+      "Id": "ce6eb472e5ef4450b643922d8e87e30e",
+      "Inputs": [
+        {
+          "Id": "6915a98261284b98bac3f9c398343003",
+          "Name": "",
+          "Description": "評価するノード。",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "39e0cbb917744966be46831b0c6bd974",
+          "Name": "",
+          "Description": "内容を確認します。",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "ノードの出力を視覚化します。"
+    },
+    {
+      "ConcreteType": "DSRevitNodesUI.Categories, DSRevitNodesUI",
+      "SelectedIndex": 144,
+      "SelectedString": "OST_ProjectInformation",
+      "NodeType": "ExtensionNode",
+      "Id": "0c2b166cbfe5425c8695e9c8622a0364",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "4c85a76765604fbdb5cccf13c6bff4d4",
+          "Name": "Category",
+          "Description": "選択した カテゴリ。",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "すべての組み込みカテゴリ。"
+    },
+    {
+      "ConcreteType": "DSRevitNodesUI.ElementsOfCategory, DSRevitNodesUI",
+      "NodeType": "ExtensionNode",
+      "Id": "60a70639daa14e76aab64aa12cce3bda",
+      "Inputs": [
+        {
+          "Id": "3ee8ca8baab745049cd8bf14f4f5aee3",
+          "Name": "Category",
+          "Description": "カテゴリ",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "2708f5e23eeb421287f2eb1305c9d437",
+          "Name": "Elements",
+          "Description": "要素タイプ。",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "モデルから指定したカテゴリのすべての要素を取得します。"
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.CustomNodes.Function, DynamoCore",
+      "FunctionSignature": "c18d1d41-04f3-4f72-80e1-6e0fdfb59b9e",
+      "FunctionType": "Graph",
+      "NodeType": "FunctionNode",
+      "Id": "f40fb94711e947eba0c5ddf38edd34ad",
+      "Inputs": [
+        {
+          "Id": "29f278c9e8394076b62d21fe22725b55",
+          "Name": "building",
+          "Description": " プロジェクト情報\n\nvar[]..[]",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "8fe4059e10ce4b2da5b7f41ee3f7469c",
+          "Name": "number",
+          "Description": " 別表第一番号",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Auto",
+      "Description": "別表第1の(い)に関するノード"
+    },
+    {
+      "ConcreteType": "PythonNodeModels.PythonNode, PythonNodeModels",
+      "NodeType": "PythonScriptNode",
+      "Code": "# Python 標準ライブラリおよび DesignScript ライブラリをロード\r\nimport sys\r\nimport clr\r\nclr.AddReference('ProtoGeometry')\r\nfrom Autodesk.DesignScript.Geometry import *\r\n\r\n# このノードへの入力は、リスト形式で IN 変数に格納されます。\r\nnumber = IN[0]\r\ncorrect = [1, 2, 3, 4]\r\n\r\nrtn = False\r\n# この行の下にコードを配置します\r\nif number[0] in correct:\r\n\trtn = True\r\n# 出力を OUT 変数に割り当てます。\r\nOUT = rtn",
+      "VariableInputPorts": true,
+      "Id": "40f5f84be1094380ae7ddc4ab6928017",
+      "Inputs": [
+        {
+          "Id": "9efb342d1b9f493b90d4121de53633dc",
+          "Name": "IN[0]",
+          "Description": "Input #0",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "716fbb314da5404f9caafff7abace368",
+          "Name": "OUT",
+          "Description": "Python スクリプトの結果",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "埋め込み IronPython スクリプトを実行します。"
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.CustomNodes.Function, DynamoCore",
+      "FunctionSignature": "f7cdd150-b0af-47d7-9f0f-5e2600ca2c08",
+      "FunctionType": "Graph",
+      "NodeType": "FunctionNode",
+      "Id": "d385cb297c594ebeabb95efd2dee5c5e",
+      "Inputs": [
+        {
+          "Id": "575c53712f36469d90d7fbd3aeb3eea3",
+          "Name": "value",
+          "Description": " 値\n\nvar[]..[]",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "f4b5ecc28010455da14c0e3affa22695",
+          "Name": "bools",
+          "Description": " boolリスト\n\nvar[]..[]",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "b31db623e0e844099252d1b14028d7c1",
+          "Name": "value",
+          "Description": " 値",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Auto",
+      "Description": "boolフィールドの値がすべてtrueの場合値を通過させます"
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.CustomNodes.Function, DynamoCore",
+      "FunctionSignature": "f7cdd150-b0af-47d7-9f0f-5e2600ca2c08",
+      "FunctionType": "Graph",
+      "NodeType": "FunctionNode",
+      "Id": "bc96dbbaacb944d6923fd08b38d9aac2",
+      "Inputs": [
+        {
+          "Id": "58ec82328c3f4ca3b77ed45fb8a20576",
+          "Name": "value",
+          "Description": " 値\n\nvar[]..[]",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "43fb460e436748d49d8eeeaf2275a87e",
+          "Name": "bools",
+          "Description": " boolリスト\n\nvar[]..[]",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "32105446364947daab2fd6aaa75af4e7",
+          "Name": "value",
+          "Description": " 値",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Auto",
+      "Description": "boolフィールドの値がすべてtrueの場合値を通過させます"
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.CustomNodes.Function, DynamoCore",
+      "FunctionSignature": "d82736bf-80fb-4171-ac8f-8b22a5742741",
+      "FunctionType": "Graph",
+      "NodeType": "FunctionNode",
+      "Id": "81a85177d98143d28161b0ce3273ade0",
+      "Inputs": [
+        {
+          "Id": "8f401768b9644cceab9f2ab82295dad7",
+          "Name": "building",
+          "Description": " プロジェクト情報\n\nvar[]..[]",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "2926811e2f1d405cab70ed8d39f72277",
+          "Name": "storey_number",
+          "Description": " 別表第一(ろ)における階",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Auto",
+      "Description": "別表第一の(ろ)に関するノード"
+    },
+    {
+      "ConcreteType": "PythonNodeModels.PythonNode, PythonNodeModels",
+      "NodeType": "PythonScriptNode",
+      "Code": "# Python 標準ライブラリおよび DesignScript ライブラリをロード\r\nimport sys\r\nimport clr\r\nclr.AddReference('ProtoGeometry')\r\nfrom Autodesk.DesignScript.Geometry import *\r\n\r\n# このノードへの入力は、リスト形式で IN 変数に格納されます。\r\ndataEnteringNode = IN\r\n\r\n# この行の下にコードを配置します\r\n\r\n# 出力を OUT 変数に割り当てます。\r\nOUT = True",
+      "VariableInputPorts": true,
+      "Id": "1de1d95a70d74fd7af2c969755e1964f",
+      "Inputs": [
+        {
+          "Id": "4b91e9e1024e491498f05c105621dcde",
+          "Name": "IN[0]",
+          "Description": "Input #0",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "29856aa45ccd4580951a0a9e39b054de",
+          "Name": "OUT",
+          "Description": "Python スクリプトの結果",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "埋め込み IronPython スクリプトを実行します。"
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.CustomNodes.Function, DynamoCore",
+      "FunctionSignature": "6d139d78-7571-45e9-ab9a-e6f5f84d0b58",
+      "FunctionType": "Graph",
+      "NodeType": "FunctionNode",
+      "Id": "c601369f619d434db648e0fa7c8bcddc",
+      "Inputs": [
+        {
+          "Id": "09c112143e3449af84f08b3de2f45fd3",
+          "Name": "building",
+          "Description": " プロジェクト情報\n\nvar[]..[]",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "7396e083255b4bcaaca37f3632003349",
+          "Name": "total_area",
+          "Description": " 別表第一(は)における床面積の合計（以上）",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Auto",
+      "Description": "別表第一の(は)に関するノード"
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.CodeBlockNodeModel, DynamoCore",
+      "NodeType": "CodeBlockNode",
+      "Code": "\"FireProtectionClass\";\n\"耐火建築物\";\n\"準耐火建築物\";",
+      "Id": "26fb865fc0f14fc2929e30facbd48f9d",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "cbb0d52ba1344097bc717b7cc5594bf7",
+          "Name": "",
+          "Description": "行 1 の式の値",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "e12994a1b67348fdb4f53ef71aa148bc",
+          "Name": "",
+          "Description": "行 2 の式の値",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "3141a18b1b60442397c973765cafb5fb",
+          "Name": "",
+          "Description": "行 3 の式の値",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "DesignScript のコードを直接作成することができます。"
+    },
+    {
+      "ConcreteType": "CoreNodeModels.CreateList, CoreNodeModels",
+      "VariableInputPorts": true,
+      "NodeType": "ExtensionNode",
+      "Id": "b3909c220b2e443aa14e2ec27aa5ef49",
+      "Inputs": [
+        {
+          "Id": "088cfb9029c34795b37731fc73eba51f",
+          "Name": "item0",
+          "Description": "項目インデックス番号 0",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "7b89aed32cc344c29d96eb7066a5022c",
+          "Name": "list",
+          "Description": "リスト",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "与えられた入力に基づいて新しいリストを作成します"
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.CustomNodes.Function, DynamoCore",
+      "FunctionSignature": "40b024c9-044f-408d-b76f-640e7aad6280",
+      "FunctionType": "Graph",
+      "NodeType": "FunctionNode",
+      "Id": "ea5c71f1c63e495bb36cbad1739d8338",
+      "Inputs": [
+        {
+          "Id": "e13b034ca06b47019fee24081edee028",
+          "Name": "element",
+          "Description": " Elements\n\nvar[]..[]",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "4564eab20d744e9c83ddefe5480e2e49",
+          "Name": "param",
+          "Description": " Parameter\n\nstring",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "8429459308944b648e24757205f85bfd",
+          "Name": "values",
+          "Description": " Target parameter values\n\nstring[]",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "230f7048acfb4917a4423b14fefdb8bc",
+          "Name": "ok",
+          "Description": " 適合Elements",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "c97e342cc46f4980878530ac8c55fa52",
+          "Name": "ng",
+          "Description": " 不適合Elements",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Auto",
+      "Description": "stringのパラメータのElementsをFilterする"
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.ColorPalette, CoreNodeModels",
+      "InputValue": {
+        "R": 0,
+        "G": 0,
+        "B": 255,
+        "A": 255
+      },
+      "NodeType": "ColorInputNode",
+      "Id": "2c1b3ab66888448f9ac5ade7f2b0f0cb",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "f04178a45eff4e29a10bc379507acc6e",
+          "Name": "Color",
+          "Description": "Selected Color.",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "パレットから色を選択します"
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.ColorPalette, CoreNodeModels",
+      "InputValue": {
+        "R": 220,
+        "G": 20,
+        "B": 60,
+        "A": 255
+      },
+      "NodeType": "ColorInputNode",
+      "Id": "8e7ed5c118d24f64a9b2d7b1602eee77",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "a28f0592de0440ec833b7f87d0ecb46f",
+          "Name": "Color",
+          "Description": "Selected Color.",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "パレットから色を選択します"
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Watch, CoreNodeModels",
+      "NodeType": "ExtensionNode",
+      "Id": "f1b207bde28c4d36b6c1ff735ba795d1",
+      "Inputs": [
+        {
+          "Id": "44c94b472cb5401f9dea1113af897361",
+          "Name": "",
+          "Description": "評価するノード。",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "c3c840fec4a94eb2a57d17dafbf83267",
+          "Name": "",
+          "Description": "内容を確認します。",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "ノードの出力を視覚化します。"
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Watch, CoreNodeModels",
+      "NodeType": "ExtensionNode",
+      "Id": "c78a1fbb3a734b93b99a26195590c396",
+      "Inputs": [
+        {
+          "Id": "6cf216a340d749c2a9ba65af2e2c6db8",
+          "Name": "",
+          "Description": "評価するノード。",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "9b4ddb3476a3427e81e79fefd51d8193",
+          "Name": "",
+          "Description": "内容を確認します。",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "ノードの出力を視覚化します。"
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.CustomNodes.Function, DynamoCore",
+      "FunctionSignature": "f4f9d398-67d0-407c-b3ec-e2f668b1d8ae",
+      "FunctionType": "Graph",
+      "NodeType": "FunctionNode",
+      "Id": "981733a69aad4fe7b4fda5a823214e0a",
+      "Inputs": [
+        {
+          "Id": "5497a74e124e468985a54b34f43452f0",
+          "Name": "cutFillColor",
+          "Description": "Color",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "10f3c662f9654807a278693e69287fe9",
+          "Name": "element",
+          "Description": "Element",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "31594203d1a24c71aeecc6e073a2d4d0",
+          "Name": "Element",
+          "Description": "戻り値",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Auto",
+      "Description": "指定したElementに着色を行う"
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.CustomNodes.Function, DynamoCore",
+      "FunctionSignature": "f4f9d398-67d0-407c-b3ec-e2f668b1d8ae",
+      "FunctionType": "Graph",
+      "NodeType": "FunctionNode",
+      "Id": "a78aa71676934c8089553cf279a921ef",
+      "Inputs": [
+        {
+          "Id": "36e75fb778f9426c9e12ed4c3ee473d2",
+          "Name": "cutFillColor",
+          "Description": "Color",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "f81baaa60032474389baf7ee6f55bfa2",
+          "Name": "element",
+          "Description": "Element",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "89812397fb644ddcb2784b6b089de136",
+          "Name": "Element",
+          "Description": "戻り値",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Auto",
+      "Description": "指定したElementに着色を行う"
+    }
+  ],
+  "Connectors": [
+    {
+      "Start": "4c85a76765604fbdb5cccf13c6bff4d4",
+      "End": "3ee8ca8baab745049cd8bf14f4f5aee3",
+      "Id": "b1e9bb2f8fb4464fb429ec5825114e34"
+    },
+    {
+      "Start": "2708f5e23eeb421287f2eb1305c9d437",
+      "End": "6915a98261284b98bac3f9c398343003",
+      "Id": "23222ad0e0df410c807ba2a88aa39048"
+    },
+    {
+      "Start": "2708f5e23eeb421287f2eb1305c9d437",
+      "End": "29f278c9e8394076b62d21fe22725b55",
+      "Id": "6dbf5bbc9653407bb1a2095c00705c0d"
+    },
+    {
+      "Start": "2708f5e23eeb421287f2eb1305c9d437",
+      "End": "575c53712f36469d90d7fbd3aeb3eea3",
+      "Id": "41ca6ae4b8fe44d3b7a7ff3c2c0de47c"
+    },
+    {
+      "Start": "8fe4059e10ce4b2da5b7f41ee3f7469c",
+      "End": "9efb342d1b9f493b90d4121de53633dc",
+      "Id": "62d963d2dc91447195a58a25f24e05cf"
+    },
+    {
+      "Start": "716fbb314da5404f9caafff7abace368",
+      "End": "f4b5ecc28010455da14c0e3affa22695",
+      "Id": "7039852b00104a28a75750e7f82e7ed4"
+    },
+    {
+      "Start": "b31db623e0e844099252d1b14028d7c1",
+      "End": "44c94b472cb5401f9dea1113af897361",
+      "Id": "1aee3628905040acab9cbf3a1384a45a"
+    },
+    {
+      "Start": "b31db623e0e844099252d1b14028d7c1",
+      "End": "8f401768b9644cceab9f2ab82295dad7",
+      "Id": "67c246f5bda842c680ef645a5b11c079"
+    },
+    {
+      "Start": "b31db623e0e844099252d1b14028d7c1",
+      "End": "09c112143e3449af84f08b3de2f45fd3",
+      "Id": "a853c98893ba4776ac32087a66d0c7a2"
+    },
+    {
+      "Start": "32105446364947daab2fd6aaa75af4e7",
+      "End": "6cf216a340d749c2a9ba65af2e2c6db8",
+      "Id": "85ddd54fb5554342ab3d2c6d1cab2783"
+    },
+    {
+      "Start": "2926811e2f1d405cab70ed8d39f72277",
+      "End": "4b91e9e1024e491498f05c105621dcde",
+      "Id": "d7bde068f44d472ea68af92518090e50"
+    },
+    {
+      "Start": "cbb0d52ba1344097bc717b7cc5594bf7",
+      "End": "4564eab20d744e9c83ddefe5480e2e49",
+      "Id": "ca098ce64fe24c2db7eda609416d40e6"
+    },
+    {
+      "Start": "e12994a1b67348fdb4f53ef71aa148bc",
+      "End": "088cfb9029c34795b37731fc73eba51f",
+      "Id": "c275d53f5f104ced9e9dbd4d1efce222"
+    },
+    {
+      "Start": "7b89aed32cc344c29d96eb7066a5022c",
+      "End": "8429459308944b648e24757205f85bfd",
+      "Id": "bc7d92df49ab40c5b628a7a83c583ebe"
+    },
+    {
+      "Start": "230f7048acfb4917a4423b14fefdb8bc",
+      "End": "10f3c662f9654807a278693e69287fe9",
+      "Id": "acd3711a38844ef6a0c2f9b254094c52"
+    },
+    {
+      "Start": "c97e342cc46f4980878530ac8c55fa52",
+      "End": "f81baaa60032474389baf7ee6f55bfa2",
+      "Id": "4e13ebd614ae451c960e4c30471836f9"
+    },
+    {
+      "Start": "f04178a45eff4e29a10bc379507acc6e",
+      "End": "5497a74e124e468985a54b34f43452f0",
+      "Id": "fdad42d9a0414a2e9551c700f37bb3d5"
+    },
+    {
+      "Start": "a28f0592de0440ec833b7f87d0ecb46f",
+      "End": "36e75fb778f9426c9e12ed4c3ee473d2",
+      "Id": "7e05de25e9b14e01a6784f53b42a2fe8"
+    }
+  ],
+  "Dependencies": [
+    "c18d1d41-04f3-4f72-80e1-6e0fdfb59b9e",
+    "f7cdd150-b0af-47d7-9f0f-5e2600ca2c08",
+    "d82736bf-80fb-4171-ac8f-8b22a5742741",
+    "6d139d78-7571-45e9-ab9a-e6f5f84d0b58",
+    "40b024c9-044f-408d-b76f-640e7aad6280",
+    "f4f9d398-67d0-407c-b3ec-e2f668b1d8ae"
+  ],
+  "NodeLibraryDependencies": [
+    {
+      "Name": "Test package",
+      "Version": "0.0.1",
+      "ReferenceType": "Package",
+      "Nodes": [
+        "f40fb94711e947eba0c5ddf38edd34ad",
+        "d385cb297c594ebeabb95efd2dee5c5e",
+        "bc96dbbaacb944d6923fd08b38d9aac2",
+        "81a85177d98143d28161b0ce3273ade0",
+        "c601369f619d434db648e0fa7c8bcddc",
+        "ea5c71f1c63e495bb36cbad1739d8338",
+        "981733a69aad4fe7b4fda5a823214e0a",
+        "a78aa71676934c8089553cf279a921ef"
+      ]
+    }
+  ],
+  "Bindings": [],
+  "View": {
+    "Dynamo": {
+      "ScaleFactor": 1.0,
+      "HasRunWithoutCrash": true,
+      "IsVisibleInDynamoLibrary": true,
+      "Version": "2.3.1.11775",
+      "RunType": "Manual",
+      "RunPeriod": "1000"
+    },
+    "Camera": {
+      "Name": "背景プレビュー",
+      "EyeX": -17.0,
+      "EyeY": 24.0,
+      "EyeZ": 50.0,
+      "LookX": 12.0,
+      "LookY": -13.0,
+      "LookZ": -58.0,
+      "UpX": 0.0,
+      "UpY": 1.0,
+      "UpZ": 0.0
+    },
+    "NodeViews": [
+      {
+        "ShowGeometry": true,
+        "Name": "Watch",
+        "Id": "ce6eb472e5ef4450b643922d8e87e30e",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 822.56983891437,
+        "Y": 298.45507647247268
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "Categories",
+        "Id": "0c2b166cbfe5425c8695e9c8622a0364",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 360.0,
+        "Y": 654.18970507637391
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "All Elements of Category",
+        "Id": "60a70639daa14e76aab64aa12cce3bda",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 576.82835606154,
+        "Y": 654.187835801057
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "AttachedTable1_i",
+        "Id": "f40fb94711e947eba0c5ddf38edd34ad",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 948.68593798443,
+        "Y": 662.599922093109
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "別表第一の（い）判定",
+        "Id": "40f5f84be1094380ae7ddc4ab6928017",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 1230.92355462138,
+        "Y": 686.36796097247293
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "logicalANDSwitch",
+        "Id": "d385cb297c594ebeabb95efd2dee5c5e",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 1428.86936890798,
+        "Y": 537.49969877777789
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "logicalANDSwitch",
+        "Id": "bc96dbbaacb944d6923fd08b38d9aac2",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 1954.9002686293902,
+        "Y": 936.30836496919392
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "AttachedTable1_ro",
+        "Id": "81a85177d98143d28161b0ce3273ade0",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 1665.26736298279,
+        "Y": 537.844886566772
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "別表第一の（ろ）の条件を満たすかどうか",
+        "Id": "1de1d95a70d74fd7af2c969755e1964f",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 2053.90948211302,
+        "Y": 537.06704594208509
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "AttachedTable1_ha",
+        "Id": "c601369f619d434db648e0fa7c8bcddc",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 1678.49502677067,
+        "Y": 713.683943685242
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "Code Block",
+        "Id": "26fb865fc0f14fc2929e30facbd48f9d",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 2724.36470685823,
+        "Y": 802.374949476533
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "List Create",
+        "Id": "b3909c220b2e443aa14e2ec27aa5ef49",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 3004.79928410539,
+        "Y": 806.941422240702
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "stringParamFilter",
+        "Id": "ea5c71f1c63e495bb36cbad1739d8338",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 3168.58973102083,
+        "Y": 667.25339623113109
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "Color Palette",
+        "Id": "2c1b3ab66888448f9ac5ade7f2b0f0cb",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 3449.04264103651,
+        "Y": 516.938710828068
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "Color Palette",
+        "Id": "8e7ed5c118d24f64a9b2d7b1602eee77",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 3451.23105663185,
+        "Y": 906.991420026174
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "Watch",
+        "Id": "f1b207bde28c4d36b6c1ff735ba795d1",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 3459.66455749803,
+        "Y": 1101.670063058574
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "Watch",
+        "Id": "c78a1fbb3a734b93b99a26195590c396",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 3461.94444112943,
+        "Y": 1197.9243942397038
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "setColorOnElement",
+        "Id": "981733a69aad4fe7b4fda5a823214e0a",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 3709.32246243524,
+        "Y": 576.62651170941308
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "setColorOnElement",
+        "Id": "a78aa71676934c8089553cf279a921ef",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 3711.73099004382,
+        "Y": 812.85087854128892
+      }
+    ],
+    "Annotations": [
+      {
+        "Id": "5e828af6e4624aa2b0ce72155d33f6cf",
+        "Title": "Input:\r\nProject Elements\r\nWall Elements",
+        "Nodes": [
+          "0c2b166cbfe5425c8695e9c8622a0364",
+          "60a70639daa14e76aab64aa12cce3bda"
+        ],
+        "Left": 350.0,
+        "Top": 514.187835801057,
+        "Width": 410.82835606154003,
+        "Height": 233.00186927531695,
+        "FontSize": 36.0,
+        "InitialTop": 654.187835801057,
+        "InitialHeight": 145.00186927531695,
+        "TextblockHeight": 130.0,
+        "Background": "#FFC1D676"
+      },
+      {
+        "Id": "0cd843fe0de14a61b7e499c7b6889745",
+        "Title": "条件処理",
+        "Nodes": [
+          "bc96dbbaacb944d6923fd08b38d9aac2",
+          "f40fb94711e947eba0c5ddf38edd34ad",
+          "40f5f84be1094380ae7ddc4ab6928017",
+          "d385cb297c594ebeabb95efd2dee5c5e",
+          "81a85177d98143d28161b0ce3273ade0",
+          "1de1d95a70d74fd7af2c969755e1964f"
+        ],
+        "Left": 938.68593798443,
+        "Top": 484.06704594208509,
+        "Width": 1355.2235441285902,
+        "Height": 571.24131902710883,
+        "FontSize": 36.0,
+        "InitialTop": 537.06704594208509,
+        "InitialHeight": 544.24131902710883,
+        "TextblockHeight": 43.0,
+        "Background": "#FFFFAA45"
+      },
+      {
+        "Id": "d33e9d58a4c7426cb4caef91547cd7e6",
+        "Title": "27条第2項適合判定",
+        "Nodes": [
+          "26fb865fc0f14fc2929e30facbd48f9d",
+          "b3909c220b2e443aa14e2ec27aa5ef49",
+          "ea5c71f1c63e495bb36cbad1739d8338"
+        ],
+        "Left": 2714.36470685823,
+        "Top": 614.25339623113109,
+        "Width": 648.22502416260022,
+        "Height": 309.12155324540186,
+        "FontSize": 36.0,
+        "InitialTop": 667.25339623113109,
+        "InitialHeight": 284.68802600957088,
+        "TextblockHeight": 43.0,
+        "Background": "#FFA4E1FF"
+      },
+      {
+        "Id": "0317ecc975ea4c5d8dc281be41c211b5",
+        "Title": "例外モデル",
+        "Nodes": [
+          "f1b207bde28c4d36b6c1ff735ba795d1",
+          "c78a1fbb3a734b93b99a26195590c396"
+        ],
+        "Left": 3449.66455749803,
+        "Top": 1048.670063058574,
+        "Width": 166.8,
+        "Height": 243.25433118112983,
+        "FontSize": 36.0,
+        "InitialTop": 1101.670063058574,
+        "InitialHeight": 241.25433118112983,
+        "TextblockHeight": 43.0,
+        "Background": "#FFC1D676"
+      },
+      {
+        "Id": "89be1da2c851452fb6f4941388671d4d",
+        "Title": "適合Elements",
+        "Nodes": [
+          "2c1b3ab66888448f9ac5ade7f2b0f0cb",
+          "981733a69aad4fe7b4fda5a823214e0a"
+        ],
+        "Left": 3439.04264103651,
+        "Top": 463.938710828068,
+        "Width": 517.27982139873029,
+        "Height": 231.68780088134508,
+        "FontSize": 36.0,
+        "InitialTop": 516.938710828068,
+        "InitialHeight": 204.68780088134508,
+        "TextblockHeight": 43.0,
+        "Background": "#FF48B9FF"
+      },
+      {
+        "Id": "4867c95ea89048488ee62b6da9003852",
+        "Title": "不適合Elements",
+        "Nodes": [
+          "8e7ed5c118d24f64a9b2d7b1602eee77",
+          "a78aa71676934c8089553cf279a921ef"
+        ],
+        "Left": 3441.23105663185,
+        "Top": 759.85087854128892,
+        "Width": 517.49993341196978,
+        "Height": 240.14054148488503,
+        "FontSize": 36.0,
+        "InitialTop": 812.85087854128892,
+        "InitialHeight": 239.14054148488503,
+        "TextblockHeight": 43.0,
+        "Background": "#FFFF7BAC"
+      }
+    ],
+    "X": -2031.137296242209,
+    "Y": -402.48691958242034,
+    "Zoom": 1.0921896591619433
+  }
+}
