@@ -19,4 +19,4 @@
 
 ### その他
 
-+ 別表第一 
+本パッケージでは[こちらのパッケージ](https://github.com/ktaroabobon/revit-property-tools)を使用しているため、併せてダウロードしてください。
